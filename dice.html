@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎲 주사위 게임</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dice-container {
+            margin: 20px 0;
+        }
+
+        .dice-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .dice-image:hover {
+            transform: scale(1.05);
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>주사위🎲굴리기</h1>
+        <div class="dice-container">
+            <img id="diceImage" src="dice1.png" alt="주사위" class="dice-image">
+        </div>
+        <button id="rollButton">굴리기</button>
+    </div>
+
+    <script>
+        // HTML 요소 가져오기
+        const diceImage = document.getElementById('diceImage');
+        const rollButton = document.getElementById('rollButton');
+
+        // 주사위 이미지 파일 경로 배열
+        const diceImages = [
+            'dice1.png',
+            'dice2.png',
+            'dice3.png',
+            'dice4.png',
+            'dice5.png',
+            'dice6.png'
+        ];
+
+        // 버튼 클릭 이벤트 리스너
+        rollButton.addEventListener('click', () => {
+            // 1부터 6까지의 무작위 숫자 생성
+            const randomNumber = Math.floor(Math.random() * 6) + 1;
+
+            // 주사위 이미지를 무작위로 변경 (transition 효과 추가)
+            diceImage.style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+                // 무작위 숫자에 맞는 이미지 경로로 변경
+                diceImage.src = diceImages[randomNumber - 1];
+                diceImage.alt = `주사위 ${randomNumber}`;
+                // 회전 효과 리셋
+                diceImage.style.transform = 'rotate(0deg)';
+            }, 200); // CSS의 transition 시간과 동일하게 설정
+        });
+    </script>
+</body>
+</html>
